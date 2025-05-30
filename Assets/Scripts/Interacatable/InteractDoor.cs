@@ -2,29 +2,19 @@ using UnityEngine;
 
 public class InteractDoor : Interactable
 {
-    // [SerializeField] private Animator doorAnimator;
-    // [SerializeField] private string openAnimationTrigger = "Open";
-    // [SerializeField] private string closeAnimationTrigger = "Close";
+    [SerializeField] private GameObject door => this.gameObject;
+    [SerializeField] private bool isOpen;
 
     protected override void Interact()
     {
-
-        // if (doorAnimator != null)
-        // {
-        //     // Toggle the door state based on the current animation state
-        //     if (doorAnimator.GetCurrentAnimatorStateInfo(0).IsName("Closed"))
-        //     {
-        //         doorAnimator.SetTrigger(openAnimationTrigger);
-        //     }
-        //     else
-        //     {
-        //         doorAnimator.SetTrigger(closeAnimationTrigger);
-        //     }
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("Door animator is not assigned.");
-        // }
+        Animator animator = door.GetComponent<Animator>();
+        isOpen = !isOpen;
+        // Only try to set the parameter if we found an Animator
+        if (animator != null)
+        {
+            animator.SetBool("IsOpen", isOpen);
+        }
+        // if the animation is playing dont make the player be able to interact with the door fow a few seconds
     }
-    
+
 }

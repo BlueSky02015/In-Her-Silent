@@ -3,15 +3,15 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private PlayerInput.PlayerActions playerActions;
-    private PlayerMotor playerMotor;
+    public PlayerInput.PlayerActions playerActions;
+    private PlayerMove playerMotor;
     private PlayerLook playerLook;
 
     void Awake()
     {
         playerInput = new PlayerInput();
         playerActions = playerInput.Player;
-        playerMotor = GetComponent<PlayerMotor>();
+        playerMotor = GetComponent<PlayerMove>();
         playerLook = GetComponent<PlayerLook>();
 
     }

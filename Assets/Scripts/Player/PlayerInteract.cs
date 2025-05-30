@@ -31,7 +31,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 // Display the interaction prompt
                 playerUI.UpdateText(interactable.promptMessage);
-                if (inputManager.Interact.triggered)
+                if (inputManager.playerActions.Interact.triggered)
                 {
                     // Call the base interaction method of the interactable object
                     interactable.BaseInteract();
