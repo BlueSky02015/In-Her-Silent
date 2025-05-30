@@ -37,7 +37,6 @@ public class AudiMixer : MonoBehaviour {
         float volume = sfxSlider.value;
         myMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("SFXVolume", volume);
-
     }
 
     void loadVolume()

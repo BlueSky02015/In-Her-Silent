@@ -14,9 +14,14 @@ public class AudioManager : MonoBehaviour {
     public AudioClip LanternSFX;
     public AudioClip PickupNoteSFX;
     public AudioClip PlayerFootStepSFX;
+    public AudioClip PlayerFootStepSFX2;
+    
+    public AudioClip PlayerFootStepIndoorSFX;
+    public AudioClip PlayerFootStepIndoorSFX2;
 
 
-    private void Awake(){
+    private void Awake()
+    {
 
         if (instance == null)
         {

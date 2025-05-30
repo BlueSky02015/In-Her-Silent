@@ -11,9 +11,10 @@ public class PlayerMove : MonoBehaviour
     private float speed = 5f;
 
     // Footstep variables
-    private float footstepDelay = 0.4f; // Time between footsteps
+    private float footstepDelay = 0.8f; // Time between footsteps
     private float nextFootstepTime = 0f;
-    private float minMovementSpeed = 0.1f; // Minimum speed to trigger footsteps
+    private float minMovementSpeed = 0.1f;
+    private bool isIndoor = false;
 
     [SerializeField] private AudioManager audioManager;
 
@@ -39,7 +40,7 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 move = (forward * input.y + right * input.x).normalized;
         controller.Move(move * speed * Time.deltaTime);
-        
+
         // Play footsteps only when conditions are met
         if (isgrounded && controller.velocity.magnitude > minMovementSpeed)
         {
@@ -54,14 +55,40 @@ public class PlayerMove : MonoBehaviour
         }
         controller.Move(playerVelocity * Time.deltaTime);
     }
-    
+
     private void PlayFootstep()
     {
         // Only play if cooldown has passed
         if (Time.time >= nextFootstepTime)
         {
-            audioManager.playSFX(audioManager.PlayerFootStepSFX);
             nextFootstepTime = Time.time + footstepDelay;
+
+            // Play the footstep sound
+            // randomly select a footstep sound
+            if (isIndoor)
+            {
+                // Play indoor footsteps
+                int randomIndex = Random.Range(0, 2);
+                if (randomIndex == 0)
+                    audioManager.playSFX(audioManager.PlayerFootStepIndoorSFX);
+                else
+                    audioManager.playSFX(audioManager.PlayerFootStepIndoorSFX2);
+            }
+            else
+            {
+                // Play outdoor footsteps
+                int randomIndex = Random.Range(0, 2);
+                if (randomIndex == 0)
+                    audioManager.playSFX(audioManager.PlayerFootStepSFX);
+                else
+                    audioManager.playSFX(audioManager.PlayerFootStepSFX2);
+            }
         }
     }
+    
+    public void SetIndoor(bool indoorStatus)
+    {
+        isIndoor = indoorStatus;
+    }
+
 }
