@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     // Footstep variables
     private float footstepDelay = 0.8f; // Time between footsteps
     private float nextFootstepTime = 0f;
+    private bool useAlternateFootstep = false;
     private float minMovementSpeed = 0.1f;
     private bool isIndoor = false;
 
@@ -64,31 +65,28 @@ public class PlayerMove : MonoBehaviour
             nextFootstepTime = Time.time + footstepDelay;
 
             // Play the footstep sound
-            // randomly select a footstep sound
             if (isIndoor)
             {
-                // Play indoor footsteps
-                int randomIndex = Random.Range(0, 2);
-                if (randomIndex == 0)
-                    audioManager.playSFX(audioManager.PlayerFootStepIndoorSFX);
-                else
+                // Alternate between indoor footsteps
+                if (useAlternateFootstep)
                     audioManager.playSFX(audioManager.PlayerFootStepIndoorSFX2);
+                else
+                    audioManager.playSFX(audioManager.PlayerFootStepIndoorSFX);
             }
             else
             {
-                // Play outdoor footsteps
-                int randomIndex = Random.Range(0, 2);
-                if (randomIndex == 0)
-                    audioManager.playSFX(audioManager.PlayerFootStepSFX);
-                else
+                // Alternate between outdoor footsteps
+                if (useAlternateFootstep)
                     audioManager.playSFX(audioManager.PlayerFootStepSFX2);
+                else
+                    audioManager.playSFX(audioManager.PlayerFootStepSFX);
             }
+
+            // Toggle the flag for next time
+            useAlternateFootstep = !useAlternateFootstep;
         }
     }
-    
-    public void SetIndoor(bool indoorStatus)
-    {
-        isIndoor = indoorStatus;
-    }
 
+    public void SetIndoor(bool indoorStatus) => isIndoor = indoorStatus;
+    
 }

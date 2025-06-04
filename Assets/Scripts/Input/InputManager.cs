@@ -1,19 +1,21 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    public PlayerInput.PlayerActions playerActions;
+    public PlayerInput.PlayerActions playerActions { get; private set; }
+    public PlayerInput.UIActions uIActions { get; private set; }
     private PlayerMove playerMotor;
     private PlayerLook playerLook;
 
     void Awake()
     {
         playerInput = new PlayerInput();
+        uIActions = playerInput.UI;
         playerActions = playerInput.Player;
         playerMotor = GetComponent<PlayerMove>();
         playerLook = GetComponent<PlayerLook>();
-
     }
 
     void FixedUpdate()
@@ -26,16 +28,19 @@ public class InputManager : MonoBehaviour
     {
         // Call the Look method on PlayerLook with the input from PlayerActions
         playerLook.Look(playerActions.Look.ReadValue<Vector2>());
-
     }
 
     // Enable and disable the input actions when the script is enabled or disabled
     private void OnEnable()
     {
         playerActions.Enable();
+        uIActions.Enable();
     }
+
+
     private void OnDisable()
     {
         playerActions.Disable();
+        uIActions.Disable();
     }
 }

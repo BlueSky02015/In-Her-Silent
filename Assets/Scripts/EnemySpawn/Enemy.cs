@@ -4,26 +4,53 @@ public class Enemy : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject player;
-    private Transform enemySpawnPoint;
+    [SerializeField] private Transform enemySpawnPoint;
     private GameObject currentEnemy; // Store reference to the spawned enemy
+    BoxCollider boxCollider;
+    private bool enemySpawned = false;
+    private float eraseTime = 0f;
+    public float time = 0f;
+    private bool timerRunning = false;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         enemySpawnPoint = this.gameObject.transform;
-        currentEnemy = SpawnEnemy(); // Store the spawned enemy reference
+        
+        // Make sure the collider is set as a trigger
+        if (boxCollider != null)
+        {
+            boxCollider.isTrigger = true;
+        }
     }
 
     void Update()
     {
-        FacePlayer();
+        if (currentEnemy != null)
+        {
+            FacePlayer();
+            
+            // Handle the erase timer manually instead of using Invoke
+            if (timerRunning)
+            {
+                time -= Time.deltaTime;
+                if (time <= eraseTime)
+                {
+                    ErasedEnemy();
+                }
+            }
+        }
     }
 
     GameObject SpawnEnemy()
     {
         if (enemyPrefab != null && enemySpawnPoint != null)
         {
-            return Instantiate(enemyPrefab, enemySpawnPoint.position, enemySpawnPoint.rotation);
+            enemySpawned = true;
+            currentEnemy = Instantiate(enemyPrefab, enemySpawnPoint.position, enemySpawnPoint.rotation);
+            timerRunning = true;
+            eraseTime = 0f;
+            return currentEnemy;
         }
         else
         {
@@ -34,17 +61,35 @@ public class Enemy : MonoBehaviour
 
     void FacePlayer()
     {
-        // Set the enemy's face to the player
         if (player != null && currentEnemy != null)
         {
             Vector3 directionToPlayer = player.transform.position - currentEnemy.transform.position;
-            directionToPlayer.y = 0; // Optional: keep the enemy upright by ignoring vertical difference
+            directionToPlayer.y = 0; 
 
             if (directionToPlayer != Vector3.zero)
             {
                 Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
                 currentEnemy.transform.rotation = lookRotation;
             }
+        }
+    }
+
+    void ErasedEnemy()
+    {
+        if (currentEnemy != null)
+        {
+            Destroy(currentEnemy);
+            currentEnemy = null;
+            enemySpawned = false;
+            timerRunning = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && !enemySpawned)
+        {
+            currentEnemy = SpawnEnemy();
         }
     }
 }

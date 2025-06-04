@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -17,9 +18,14 @@ public class PlayerInteract : MonoBehaviour
     }
     void Update()
     {
-        // Clear the prompt text each frame
+        // Clear the prompt text each frame 
         playerUI.UpdateText(string.Empty);
+        playerUI.hideHandImage();
+        interacatwithobject();
+    }
 
+    void interacatwithobject()
+    {
         // Cast a ray from the camera to check for interactable objects
         Ray ray = new Ray(camera.transform.position, camera.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * interactDistance, Color.red);
@@ -31,6 +37,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 // Display the interaction prompt
                 playerUI.UpdateText(interactable.promptMessage);
+                playerUI.showHandImage();
                 if (inputManager.playerActions.Interact.triggered)
                 {
                     // Call the base interaction method of the interactable object

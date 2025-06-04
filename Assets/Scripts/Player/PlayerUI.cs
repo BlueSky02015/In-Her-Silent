@@ -4,15 +4,12 @@ using TMPro;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI promptText;
+    [SerializeField] private Image HandImage;
 
+    public void UpdateText(string textMassage) => promptText.text = textMassage;
 
-    void Start()
-    {
+    public void showHandImage() => HandImage.enabled = true;
+    
+    public void hideHandImage() => HandImage.enabled = false;
 
-    }
-
-    public void UpdateText(string textMassage)
-    {
-        promptText.text = textMassage;
-    }
 }
