@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,14 +25,11 @@ public class NoteInventory : MonoBehaviour
     public void AddNote(CollectableItem note)
     {
         if (note == null || note.noteData == null)
-        {
-            Debug.LogError("Tried to add null note!");
+    {
             return;
         }
 
         collectedNotes.Add(note);
-        Debug.Log($"Added note: {note.noteData.title}. Total: {collectedNotes.Count}");
         onNoteCollected?.Invoke(note.noteData);
     }
-
 }

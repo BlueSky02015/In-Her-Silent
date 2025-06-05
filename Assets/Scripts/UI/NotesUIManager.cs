@@ -7,44 +7,54 @@ public class NoteUIManager : MonoBehaviour
     public GameObject notePanel; 
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI contentText;
-    public Image noteImage;
-    public Button nextButton; // For cycling through notes
+    public Button nextButton;
     public Button prevButton;
 
-    private int _currentNoteIndex = 0;
+    private int _currentNoteIndex = -1; 
 
     private void Start()
     {
-        notePanel.SetActive(false); // Hide the note panel initially
+        notePanel.SetActive(false);
         NoteInventory.Instance.onNoteCollected += ShowLatestNote;
 
-        // Set up button listeners
         nextButton.onClick.AddListener(ShowNextNote);
         prevButton.onClick.AddListener(ShowPreviousNote);
     }
 
-    // Show the most recently collected note
     private void ShowLatestNote(NoteData _)
     {
-        if (NoteInventory.Instance.collectedNotes.Count == 0) return;
+        if (NoteInventory.Instance.collectedNotes.Count == 0)
+        {
+            return;
+        }
 
+        // Set to last index and show
         _currentNoteIndex = NoteInventory.Instance.collectedNotes.Count - 1;
         UpdateNoteUI();
-        notePanel.SetActive(true); 
+        notePanel.SetActive(true);
+        
     }
 
-    // Override UI based on current index
     private void UpdateNoteUI()
     {
         if (_currentNoteIndex < 0 || _currentNoteIndex >= NoteInventory.Instance.collectedNotes.Count)
+        {
             return;
+        }
 
-        NoteData note = NoteInventory.Instance.collectedNotes[_currentNoteIndex].noteData;
+        var noteItem = NoteInventory.Instance.collectedNotes[_currentNoteIndex];
+        if (noteItem == null || noteItem.noteData == null)
+        {
+            return;
+        }
+
+        NoteData note = noteItem.noteData;
         titleText.text = note.title;
         contentText.text = note.content;
 
-        if (note.noteImage != null)
-            noteImage.sprite = note.noteImage;
+        // Update button interactability
+        prevButton.interactable = _currentNoteIndex > 0;
+        nextButton.interactable = _currentNoteIndex < NoteInventory.Instance.collectedNotes.Count - 1;
     }
 
     public void ShowNextNote()
@@ -53,6 +63,7 @@ public class NoteUIManager : MonoBehaviour
         {
             _currentNoteIndex++;
             UpdateNoteUI();
+            Debug.Log($"Showing next note. Current index: {_currentNoteIndex}");
         }
     }
 
@@ -62,6 +73,7 @@ public class NoteUIManager : MonoBehaviour
         {
             _currentNoteIndex--;
             UpdateNoteUI();
+            Debug.Log($"Showing previous note. Current index: {_currentNoteIndex}");
         }
     }
 }

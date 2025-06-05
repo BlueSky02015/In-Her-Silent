@@ -8,5 +8,4 @@ public class NoteData : ScriptableObject
     [TextArea(3, 10)]
     public string content; // The actual note content
     public int collectionOrder; // The intended order for collection
-    public Sprite noteImage; // Optional image to display with the note
 }
