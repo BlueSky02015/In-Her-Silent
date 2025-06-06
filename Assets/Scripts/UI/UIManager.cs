@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,12 @@ public class UIManager : MonoBehaviour
     public GameObject GameCreditScreen;
     public GameObject NotePanel;
     public bool isOver, isPlaying, isPause, isInCredit;
+
+    void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
 
     void Awake()
@@ -74,6 +81,21 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         HandleInput();
+        HandleCursor();
+    }
+
+    void HandleCursor()
+    {
+        if (isPlaying)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     private void HandleInput()

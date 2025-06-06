@@ -24,9 +24,7 @@ public class CollectableItem : Interactable
         NoteInventory.Instance.AddNote(this);
 
         // Disable the collectable item
-        gameObject.SetActive(false); // Disable instead of destroy to allow reactivation if needed
-
-        // Optionally, you can add logic to update the player's inventory or score here
+        gameObject.SetActive(false); // Disable instead of destroy to allow reactivation if need
     }
 
 }

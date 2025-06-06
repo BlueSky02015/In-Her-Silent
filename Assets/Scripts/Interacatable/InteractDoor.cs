@@ -2,19 +2,64 @@ using UnityEngine;
 
 public class InteractDoor : Interactable
 {
-    [SerializeField] private GameObject door => this.gameObject;
+    [Header("Door Settings")]
     [SerializeField] private bool isOpen;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip doorOpenSound;
+    [SerializeField] private AudioClip doorCloseSound;
+    [SerializeField] private AudioClip doorLockedSound;
+    
+    private AudioSource audioSource;
+    private Animator animator;
+    private LockedDoor lockedDoor;
+    
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        lockedDoor = GetComponent<LockedDoor>();
+        
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
 
     protected override void Interact()
     {
-        Animator animator = door.GetComponent<Animator>();
+        // Check if door is locked first
+        if (lockedDoor != null && lockedDoor.IsLocked)
+        {
+            if (doorLockedSound != null)
+            {
+                audioSource.PlayOneShot(doorLockedSound);
+            }
+            return;
+        }
+        
+        // Toggle door state
         isOpen = !isOpen;
-        // Only try to set the parameter if we found an Animator
+        
+        // Play appropriate sound
+        if (audioSource != null)
+        {
+            var clip = isOpen ? doorOpenSound : doorCloseSound;
+            if (clip != null) audioSource.PlayOneShot(clip);
+        }
+        
+        // Trigger animation
         if (animator != null)
         {
             animator.SetBool("IsOpen", isOpen);
         }
-        // if the animation is playing dont make the player be able to interact with the door fow a few seconds
     }
 
+    public void SetInteractable(bool isInteractable)
+    {
+        if (animator != null)
+        {
+            animator.enabled = isInteractable;
+        }
+    }
 }

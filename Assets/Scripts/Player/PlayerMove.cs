@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     private bool isgrounded;
     private float gravity = -9.81f;
     private float speed = 5f;
+    private bool canMove;
 
     // Footstep variables
     private float footstepDelay = 0.8f; // Time between footsteps
@@ -28,6 +30,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        // if (!canMove) return; 
         isgrounded = controller.isGrounded;
     }
 
@@ -88,5 +91,9 @@ public class PlayerMove : MonoBehaviour
     }
 
     public void SetIndoor(bool indoorStatus) => isIndoor = indoorStatus;
-    
+
+    public void SetMovementEnabled(bool enable)
+    {
+        canMove = enable;
+    }
 }

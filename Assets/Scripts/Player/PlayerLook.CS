@@ -8,6 +8,8 @@ public class PlayerLook : MonoBehaviour
     public float XmouseSensitivity = 30f;
     public float YmouseSensitivity = 30f;
 
+
+
     public void Look(Vector2 input)
     {
         float mouseX = input.x;

@@ -695,6 +695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7934905950849619559, guid: 323c9a9eb9a363f4eb349bd5851d7bcc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8031591395099845776, guid: 323c9a9eb9a363f4eb349bd5851d7bcc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -744,8 +748,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610519887}
-  - component: {fileID: 1610519888}
   - component: {fileID: 1610519889}
+  - component: {fileID: 1610519888}
+  - component: {fileID: 1610519890}
   m_Layer: 0
   m_Name: EnemySpawn
   m_TagString: Untagged
@@ -805,6 +810,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: -5, y: 0, z: 0}
+--- !u!114 &1610519890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610519886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0f8dba25bd24243ac130947e7c2df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 1
+  targetFocusDuration: 2
 --- !u!1001 &1664903818
 PrefabInstance:
   m_ObjectHideFlags: 0
