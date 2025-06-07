@@ -17,7 +17,7 @@ public class EnemyEffect : MonoBehaviour
             );
             
             // // Disable trigger to prevent retriggering
-            GetComponent<Collider>().enabled = false;
+            // GetComponent<Collider>().enabled = false;
         }
     }
 }

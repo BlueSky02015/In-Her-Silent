@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: NoteData 2
   m_EditorClassIdentifier: 
   noteID: 3
-  title: Thank You
-  content: ILY
+  title: I was desperate. Foolish.
+  content: "\rThe night I lit the candles and whispered the words, I thought I felt
+    him. A cold breath on my neck. A whisper in the dark. But it wasn\u2019t Henry.\r\n\r\nSomething
+    else answered...\r"
   collectionOrder: 3
-  noteImage: {fileID: 0}

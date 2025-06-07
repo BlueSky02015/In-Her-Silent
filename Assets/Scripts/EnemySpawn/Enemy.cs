@@ -2,21 +2,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Transform enemySpawnPoint;
     public GameObject enemyPrefab;
     public GameObject player;
-    [SerializeField] private Transform enemySpawnPoint;
     private GameObject currentEnemy; // Store reference to the spawned enemy
     BoxCollider boxCollider;
     private bool enemySpawned = false;
     private float eraseTime = 0f;
     public float time = 0f;
     private bool timerRunning = false;
+    AudioManager audioManager;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         enemySpawnPoint = this.gameObject.transform;
-        
+
         // Make sure the collider is set as a trigger
         if (boxCollider != null)
         {
@@ -29,7 +31,7 @@ public class Enemy : MonoBehaviour
         if (currentEnemy != null)
         {
             FacePlayer();
-            
+
             // Handle the erase timer manually instead of using Invoke
             if (timerRunning)
             {
@@ -64,7 +66,7 @@ public class Enemy : MonoBehaviour
         if (player != null && currentEnemy != null)
         {
             Vector3 directionToPlayer = player.transform.position - currentEnemy.transform.position;
-            directionToPlayer.y = 0; 
+            directionToPlayer.y = 0;
 
             if (directionToPlayer != Vector3.zero)
             {
@@ -90,6 +92,12 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player") && !enemySpawned)
         {
             currentEnemy = SpawnEnemy();
+
+
+            float randomPitch = Random.Range(0.8f, 1.2f);
+            audioManager.playSFX(audioManager.GrannyJumpSFX, randomPitch);
+            
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

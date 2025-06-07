@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: NoteData
   m_EditorClassIdentifier: 
   noteID: 1
-  title: HELLO
-  content: 'HELLO MY DEAR
-
-'
+  title: 'My dear child,  '
+  content: "If you\u2019re reading this, it means you\u2019ve found my old diary
+    tucked away in this dusty house\u2014the one your grandpa used to call \"the
+    memory box.\" I hope you\u2019ll forgive an old woman\u2019s ramblings, but I
+    need you to understand why this house\u2026 \nfeels the way it does.\r"
   collectionOrder: 1
-  noteImage: {fileID: 0}

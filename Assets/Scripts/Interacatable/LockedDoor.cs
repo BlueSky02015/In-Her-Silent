@@ -4,29 +4,29 @@ public class LockedDoor : MonoBehaviour
 {
     [Header("Key Settings")]
     public bool requiresKey = true;
-    
+
     [Header("Door State")]
-    [SerializeField] 
+    [SerializeField]
     private bool isLocked = true;
     private InteractDoor interactDoor;
 
     [Header("Audio")]
-    [SerializeField] 
+    [SerializeField]
     private AudioClip unlockSound;
-    
+
     private AudioSource audioSource;
 
     void Awake()
     {
         interactDoor = GetComponent<InteractDoor>();
         audioSource = GetComponent<AudioSource>();
-        
+
         // Ensure we have an AudioSource
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-    
+
         UpdateDoorLockState();
     }
 
@@ -34,7 +34,7 @@ public class LockedDoor : MonoBehaviour
     public void TryUnlock(bool hasKey)
     {
         if (!isLocked) return; // Already unlocked
-        
+
         if (!requiresKey)
         {
             UnlockDoor();
@@ -49,10 +49,6 @@ public class LockedDoor : MonoBehaviour
                 audioSource.PlayOneShot(unlockSound);
             }
         }
-        else
-        {
-            Debug.Log("Door is locked - you need the right key!");
-        }
     }
 
     // Unlocks the door
@@ -60,8 +56,13 @@ public class LockedDoor : MonoBehaviour
     {
         isLocked = false;
         UpdateDoorLockState();
-        Debug.Log("Door unlocked!");
+        InteractDoor interactDoor = GetComponent<InteractDoor>();
+        if (interactDoor != null)
+        {
+            interactDoor.dialogueMessage = string.Empty;
+        }
     }
+
 
     // Updates the interactable state based on lock status
     private void UpdateDoorLockState()

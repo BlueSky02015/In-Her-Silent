@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour {
-    
+public class AudioManager : MonoBehaviour
+{
+
     public static AudioManager instance { get; set; }
 
     [Header("Audio Source")]
@@ -13,9 +14,12 @@ public class AudioManager : MonoBehaviour {
     public AudioClip DoorSFX;
     public AudioClip LanternSFX;
     public AudioClip PickupNoteSFX;
+    public AudioClip GrannyJumpSFX;
+
+    [Header("Footsteps")]
     public AudioClip PlayerFootStepSFX;
     public AudioClip PlayerFootStepSFX2;
-    
+
     public AudioClip PlayerFootStepIndoorSFX;
     public AudioClip PlayerFootStepIndoorSFX2;
 
@@ -40,7 +44,12 @@ public class AudioManager : MonoBehaviour {
         musicSource.Play();
     }
 
-    public void playSFX(AudioClip clip){
-        SFXSource.PlayOneShot(clip);
+    public void playSFX(AudioClip clip, float pitch = 1.0f)
+    {
+        if (SFXSource != null && clip != null)
+        {
+            SFXSource.pitch = pitch; 
+            SFXSource.PlayOneShot(clip);
+        }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractDoor : Interactable
+public class InteractDoor2 : Interactable
 {
     [Header("Door Settings")]
     [SerializeField] private bool isOpen;
@@ -12,13 +12,13 @@ public class InteractDoor : Interactable
 
     private AudioSource audioSource;
     private Animator animator;
-    private LockedDoor lockedDoor;
+    private LockedDoor2 lockedDoor2;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        lockedDoor = GetComponent<LockedDoor>();
+        lockedDoor2 = GetComponent<LockedDoor2>();
 
         if (audioSource == null)
         {
@@ -29,11 +29,12 @@ public class InteractDoor : Interactable
     protected override void Interact()
     {
         // Check if door is locked first
-        if (lockedDoor != null && lockedDoor.IsLocked)
+        if (lockedDoor2 != null && lockedDoor2.IsLocked)
         {
             //Set the dialogue message only if locked
-            dialogueMessage = "Locked? weird....\nGrandma usually leave a spare key on grandapa's tomb at\nthe left side of the house";
+            dialogueMessage = "This one also lock? \n there must be a missing note i haven't find";
             audioSource.PlayOneShot(doorLockedSound);
+            lockedDoor2.TryUnlock(); 
             return;
         }
         else

@@ -4,6 +4,7 @@ public abstract class Interactable : MonoBehaviour
 {
     // This class serves as a base class for all interactable objects in the game.
     public string promptMessage;
+    [TextArea(3,10)]public string dialogueMessage;
 
     public void BaseInteract()
     {

@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: NoteData 1
   m_EditorClassIdentifier: 
   noteID: 2
-  title: IM SORRY
-  content: FORGIVE ME
+  title: Yearning
+  content: "I miss him. Every single day. Your grandpa, my Henry\u2014his laugh,
+    the way he\u2019d hum off-key while making tea, even the way he\u2019d snore
+    like a bear in winter. Fifty years together, and then\u2026 silence. The house
+    is too big without him. Too quiet.\r\n\r\nI tried everything to move on. Prayers,
+    grief groups, even those silly self-help books. But nothing filled the hole he
+    left. Then, one night, I found it\u2014an old leather-bound book in the back
+    of Henry\u2019s study. \"Whispers Beyond the Veil.\" Dark, crumbling pages filled
+    with rituals, promises\u2026 \na way to bring him back.\r"
   collectionOrder: 2
-  noteImage: {fileID: 0}

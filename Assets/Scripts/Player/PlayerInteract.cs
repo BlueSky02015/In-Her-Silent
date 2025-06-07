@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -40,8 +38,8 @@ public class PlayerInteract : MonoBehaviour
                 playerUI.showHandImage();
                 if (inputManager.playerActions.Interact.triggered)
                 {
-                    // Call the base interaction method of the interactable object
                     interactable.BaseInteract();
+                    playerUI.UpdateDialogueText(interactable.dialogueMessage);
                 }
             }
         }

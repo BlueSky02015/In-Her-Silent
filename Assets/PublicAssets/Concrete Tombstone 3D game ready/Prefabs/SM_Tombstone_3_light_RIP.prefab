@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1851187569126951604}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Tombstone_3_light_RIP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,18 +93,56 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8019591643126010083, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ea18f730d45b39242bcf177e739175d3, type: 2}
+    - target: {fileID: 894251924625787418, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
       propertyPath: m_Name
       value: Tombstone_3_Unity
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 894251924625787418, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3019709959345010003}
   m_SourcePrefab: {fileID: 100100000, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
+--- !u!1 &5981870618299625338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 894251924625787418, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
+  m_PrefabInstance: {fileID: 6875548305261061472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3019709959345010003
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981870618299625338}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6624926580062850613, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
 --- !u!4 &6404228329723036299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 62126fe6e4183c64dbd2b0fe2886abe4, type: 3}
