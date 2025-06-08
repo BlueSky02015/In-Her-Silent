@@ -31,14 +31,14 @@ public class InputManager : MonoBehaviour
     }
 
     // Enable and disable the input actions when the script is enabled or disabled
-    private void OnEnable()
+    public void OnEnable()
     {
         playerActions.Enable();
         uIActions.Enable();
     }
 
-
-    private void OnDisable()
+ 
+    public void OnDisable()
     {
         playerActions.Disable();
         uIActions.Disable();

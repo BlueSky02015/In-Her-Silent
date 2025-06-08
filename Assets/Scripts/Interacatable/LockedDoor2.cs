@@ -4,7 +4,7 @@ public class LockedDoor2 : MonoBehaviour
 {
     [Header("Note Settings")]
     public bool requiresNotes = true;
-    public int requiredNotesCount = 2;
+    private int requiredNotesCount = 3;
 
     [Header("Door State")]
     [SerializeField]
