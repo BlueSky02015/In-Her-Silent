@@ -30,7 +30,6 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -48,7 +47,7 @@ public class AudioManager : MonoBehaviour
     {
         if (SFXSource != null && clip != null)
         {
-            SFXSource.pitch = pitch; 
+            SFXSource.pitch = pitch;
             SFXSource.PlayOneShot(clip);
         }
     }

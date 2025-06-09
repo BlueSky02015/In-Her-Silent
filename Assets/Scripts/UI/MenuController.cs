@@ -8,11 +8,22 @@ public class MenuController : MonoBehaviour
     string newGameScene = "MainScene";
     public AudioClip bg_music;
     public AudioSource main_channel;
-    
+
     void Start()
     {
-        main_channel.PlayOneShot(bg_music);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
+        if (bg_music != null)
+        {
+            main_channel.PlayOneShot(bg_music);
+        }
+        else
+        {
+            return;
+        }
     }
+
     public void StaerNewGame()
     {
         main_channel.Stop();
@@ -27,5 +38,7 @@ public class MenuController : MonoBehaviour
         Application.Quit();
 #endif
     }
-    
+
+
+
 }
